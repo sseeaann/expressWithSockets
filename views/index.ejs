@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>Survey Form</title>
+		<style type="text/css">
+			.container{
+				width: 970px;
+				margin: 0 auto;
+				padding: 5px;
+			}
+			#form{
+				border: 1px solid black;
+				padding: 10px 20px;
+			}
+			input{
+				min-width: 300px;
+				min-height: 25px;
+			}
+			textarea{
+				width: 500px;
+			}
+			#response{
+				background-color: green;
+				border: 1px solid black;
+				padding: 10px;
+			}
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var socket = io.connect();
+
+				$('#form').submit(function(){
+					var forms = $(this).serialize();
+					socket.emit("submit", {input: forms});
+					return false;
+				});
+				socket.on('updated_message', function(data){
+					console.log(data);
+					$('#returned').append('<div id="response">' + JSON.stringify(data) + " " +data.newData.random_number +'</div>');
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div id="returned"></div>
+			<form id="form">
+				<p>Your Name: </p>
+				<input type="text" name="name" placeholder="full name" autofocus>
+				<p>Dojo Location: </p>
+				<select name="location">
+					<option>Mountain View, CA</option>
+					<option>Seattle, WA</option>
+					<option>Online</option>
+					<option>Online & Mountain View, CA</option>
+					<option>Online & Seattle, WA</option>
+				</select>
+				<p>Favorite Language: </p>
+				<select name="language">
+					<option>HTML/CSS</option>
+					<option>Javascript</option>
+					<option>PHP</option>
+					<option>Other</option>
+				</select>
+				<p>Comment (optional): </p>
+				<textarea name="comment"></textarea>
+				<p><button type="submit">Submit</button></p>
+				<input type="hidden" value="submit">
+			</form>
+		</div>
+	</body>
+</html>

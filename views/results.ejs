@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Survey Form</title>
+		<style type="text/css">
+			.container{
+				width: 970px;
+				margin: 0 auto;
+				padding: 5px;
+			}
+			.results{
+				border: 1px solid black;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="results">
+				<h2>Submitted Information</h2>
+				<p>Name: <%= name %></p>
+				<p>Dojo Location: <%= location %></p>
+				<p>Favorite Language: <%= language %></p>
+				<p>Comment: <%= comment %></p>
+				<a href="/">Go Back</a>
+			</div>
+		</div>
+	</body>
+</html>

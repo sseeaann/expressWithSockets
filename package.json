@@ -1,0 +1,17 @@
+{
+  "name": "Express_Survey_Form_2",
+  "version": "0.0.1",
+  "description": "survey form",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "socket.io": "^1.3.5"
+  }
+}
